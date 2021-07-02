@@ -1,0 +1,14 @@
+<%- include ('partials/header.ejs'); %>
+
+<body>
+    <div class="container">
+         <h1>Meu Blog</h1>
+         <hr>
+         <form method="POST" action="/salvar">
+            <label >Escreva um post: </label>
+            <textarea placeholder="No que você está pensando..." name="body" rows="5" class="form-control"> </textarea>
+            <br>
+            <button class="btn btn-outline-success">Postar</button>
+        </form>
+    </div>
+<%- include ('partials/footer.ejs') %>
