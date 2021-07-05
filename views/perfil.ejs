@@ -1,0 +1,25 @@
+<%- include ('partials/header.ejs'); %>
+<%- include ('partials/nav.ejs'); %>
+
+<div class="card"style="max-width: 18rem;"></div>
+<div class="card-header">
+    <h3>Meus dados: </h3>
+</div>
+<div class="card-body">
+    <% User.forEach(user => { %>
+    <strong>Nome: </strong><%=user.name%>
+    <br>
+    <strong> E-mail: </strong><%=user.mail%>
+</div>
+<% }) %><form method="POST" action="/salvar">
+    <label for="name">Nome: </label>
+    <input type="text" id="name" name="name">
+    <label for="mail">E-mail: </label>
+    <input type="text" id="mail" name="mail">
+    <button class="btn btn-outline">Atualizar usuário</button>
+</form>
+
+</div>
+
+
+<%- include ('partials/footer.ejs') %>

@@ -1,17 +1,18 @@
+  
 const Sequelize = require("sequelize");
 const connection = require("./database");
-
-const User = connection.define('',{
-    name:{
-        type: Sequelize.STRING,
+const Users = connection.define('user', {
+    name: {
+        type: Sequelize.STRING(50),
         allowNull: false
     },
-    mail:{
-        type: Sequelize.STRING,
-        allowNull: false
+    mail: {
+        type: Sequelize.STRING(50),
+        allowNuull: false
     }
 });
+Users.sync({force: false}).then(() => {
+    console.log('table user created!');
+})
 
-User.sync({force: false}).then(() => {});
-
-module.exports = User;
+module.exports = Users;
