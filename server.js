@@ -46,16 +46,21 @@ app.get("/", (req, res) => {
         raw: true, order: [
             ['id', 'DESC']
         ]
-    }).then(User => {        
+    }).then(User => {    
+        console.log("USER ID:",User[0].id)    
         // Buscando pela chave
          client.get(User[0].id, function (err, reply) {
             if (reply != null) {
-                const teste = JSON.parse(reply.toString());
+                const rascunho = JSON.parse(reply.toString());
                 res.render("index", {
-                    rascunho: teste,
+                    rascunho: rascunho,
                     User: User
                 });
             } else {
+                res.render("index", {
+                    rascunho: "",
+                    User: User
+                });
                 console.log("Chave não encontrada");
             }
         });
@@ -107,9 +112,7 @@ app.post("/delete", (req, res) => {
 app.post("/salvar", async (req, res) => {
     var name = req.body.name
     var mail = req.body.mail
-    var user = await User.findOne({ where: { name: name } });
 
-    console.log("ID:   =>", user.id);
     if (User.length > 0) {
         res.redirect("/perfil");
     }
