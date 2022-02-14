@@ -1,25 +1,49 @@
 <%- include ('partials/header.ejs'); %>
 <%- include ('partials/nav.ejs'); %>
 
-<div class="card"style="max-width: 18rem;"></div>
 <div class="card-header">
     <h3>Meus dados: </h3>
 </div>
 <div class="card-body">
-    <% User.forEach(user => { %>
-    <strong>Nome: </strong><%=user.name%>
+
+    <strong>Nome: </strong> <%=User[0].name%> 
     <br>
-    <strong> E-mail: </strong><%=user.mail%>
+    <strong> E-mail: </strong> <%=User[0].mail%> 
+    <br>
+    <form method="POST" action="/delete" style="display:inline" onsubmit="DeleteConfirm(event, this)">
+        <input type="hidden" name="id" value="<%=User[0].id%>">
+        <button class="btn btn-danger">Deletar</button>
+    </form>
+    <br><br>
+    <div class="container">
+    <form method="POST" action="/salvar">
+        <label for="name">Nome: </label>
+        <input type="text" id="name" name="name" required>
+        <label for="mail">E-mail: </label>
+        <input type="text" id="mail" name="mail" required>
+        <input type="hidden" name="id" id="id" value="<%=User[0].id%>">
+        <button class="btn btn-outline">Criar usuário</button>
+    </form>
+    <br>
+        <form method="POST" action="/edit">
+            <label for="mail">Nome: </label>
+            <input type="text" id="name" name="name" value="<%=User[0].name%>">
+            <label for="name">E-mail: </label>
+            <input type="text" id="mail" name="mail" value=<%=User[0].mail%>>
+            <input type="hidden" name="id" id="id" value="<%=User[0].id%>">
+            <button class="btn btn-outline">Atualizar usuário</button>
+        </form>
+    </div>
 </div>
-<% }) %><form method="POST" action="/salvar">
-    <label for="name">Nome: </label>
-    <input type="text" id="name" name="name">
-    <label for="mail">E-mail: </label>
-    <input type="text" id="mail" name="mail">
-    <button class="btn btn-outline">Atualizar usuário</button>
-</form>
-
 </div>
 
-
+<script>
+    const DeleteConfirm = ((event, form) => {
+        event.preventDefault();
+        let decision = confirm("Você quer deletar essa conta?");
+        if (decision) {
+            form.submit();
+        }
+    });
+</script>
 <%- include ('partials/footer.ejs') %>

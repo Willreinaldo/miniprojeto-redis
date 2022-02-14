@@ -1,20 +1,23 @@
 <%- include ('partials/header.ejs'); %>
 <%- include ('partials/nav.ejs'); %>
 
-        <div class="card">
-            <div class="card-header">
-                <h4>Você postou: </h4>
-            </div>
-            <div class="card-body">
-            </div>
-        </div>
-        <br>
-        <form method="POST" action="/salvar">
-            <label>Escreva um post: </label>
-            <textarea placeholder="No que você está pensando..." name="body" rows="5" class="form-control"> </textarea>
-            <br>
-            <button class="btn btn-outline-success">Postar</button>
-        </form> 
-
+<div class="card">
+    <div class="card-header">
+        <h4><%=User[0].name%> postou: </h4>
     </div>
-    <%- include ('partials/footer.ejs') %>
+    <div class="card-body">  
+        <%=rascunho%> 
+    </div>
+</div>
+<br>
+<form method="POST" action="/postar">
+    <label>Escreva um post: </label>
+    <input type="hidden" name="id" id="id" value="<%=User[0].id%>">
+    <textarea placeholder="No que você está pensando..." name="rascunho" id="rascunho" rows="5" class="form-control">
+    </textarea>
+    <br>
+    <button class="btn btn-outline-success">Postar</button>
+</form>
+
+</div>
+<%- include ('partials/footer.ejs') %>

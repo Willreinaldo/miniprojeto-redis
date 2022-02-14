@@ -1,10 +1,10 @@
   
 const Sequelize = require("sequelize");
-const connection = require("./database");
-const Users = connection.define('user', {
+const connection = require("./index");
+const Users = connection.define('users', {
     name: {
         type: Sequelize.STRING(50),
-        allowNull: false
+       allowNull: false
     },
     mail: {
         type: Sequelize.STRING(50),
