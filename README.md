@@ -1,2 +1,2 @@
 # miniprojeto-redis
-Primeira parte de um miniprojeto utilizando Redis, Node, PostgreeSQL etc
+Miniprojeto utilizando Redis, Node, PostgreeSQL e Bootstrap.
